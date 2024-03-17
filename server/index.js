@@ -3,16 +3,17 @@ const express = require('express');
 const sequelize = require('./db.js');
 const models = require('./models/models.js');
 const cors = require('cors');
+const router = require('./routes/index.js');
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'WORKING!!' });
-});
+app.use('/api', router);
+// app.get('/', (req, res) => {
+//   res.status(200).json({ message: 'WORKING!!' });
+// });
 
 const start = async () => {
   try {
